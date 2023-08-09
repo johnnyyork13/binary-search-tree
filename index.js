@@ -39,13 +39,30 @@ class BST {
         }
     }
 
-    //make this delete function work for this binary search tree
-    delete(value, currentNode = this.root) {
-        // if (currentNode === null) return currentNode;
+    findSuccessor(node) {
+        let successor = node.right;
+        while (successor.left != null) {
+            successor = successor.left;
+        }
+        successor.left = node.left;
+        return successor;
+    }
 
-        // if (currentNode.value === value) {
-            
-        // }
+    //make this delete function work for this binary search tree
+    delete(value, node = this.root) {
+        console.log(node);
+        if (node === null) return null;
+        if (value < node.data) node.left = this.delete(value, node.left);
+        else if (value > node.data) node.right = this.delete(value, node.right);
+        else {
+            if (node.left === null) return node.right;
+            else if (node.right === null) return node.left;
+            else {
+                return this.findSuccessor(node);
+            }
+        }
+        //on the way back, return node if no conditions are met
+        return node;
     }
 
     prettyPrint(node, prefix = "", isLeft = true) {
@@ -68,8 +85,7 @@ myTree.insert(2);
 myTree.insert(11);
 myTree.insert(22);
 myTree.insert(10);
-myTree.insert(0);
-myTree.delete(10);
+myTree.delete(4);
 
 myTree.prettyPrint(myTree.root);
 //console.log(myTree.root.left.left.left);
