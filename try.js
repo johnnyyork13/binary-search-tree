@@ -129,11 +129,11 @@ const myBST = new BST([1,2,3,4,5,6,7,8,9]);
 // myBST.delete(3);
 // myBST.delete(2);
 // myBST.delete(9);
-myBST.insert(9);
-//console.log('Height', myBST.height(9));
+//myBST.insert(9);
+console.log('Height', myBST.height(8));
 //console.log("Depth", myBST.depth(9));
 
-console.log(myBST.preorder());
+//console.log(myBST.preorder());
 
 //console.log(myBST.find(9));
 
