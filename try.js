@@ -122,6 +122,23 @@ class BST {
         }
     }
 
+    breadthFirst() {
+        let queue = [this.root];
+        let finished = [];
+
+        while (queue.length > 0) {
+            const e = queue.shift();
+            if (e) {
+                finished.push(e);
+                queue.push(e.left && e.left);
+                queue.push(e.right && e.right);
+            }
+
+        }
+
+        return finished;
+    }
+
 }
 
 
@@ -130,14 +147,13 @@ const myBST = new BST([1,2,3,4,5,6,7,8,9]);
 // myBST.delete(2);
 // myBST.delete(9);
 //myBST.insert(9);
-console.log('Height', myBST.height(8));
+//console.log('Height', myBST.height(8));
 //console.log("Depth", myBST.depth(9));
-
 //console.log(myBST.preorder());
-
 //console.log(myBST.find(9));
-
 //console.log(myBST.levelOrder());
+
+console.log(myBST.breadthFirst());
 
 myBST.prettyPrint(myBST.root);
 
